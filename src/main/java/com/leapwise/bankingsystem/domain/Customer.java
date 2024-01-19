@@ -18,7 +18,7 @@ import java.util.UUID;
 @Entity(name = "customer")
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue
     private UUID id;
 
     @Column(name = "name", length = 50, nullable = false)
@@ -35,7 +35,7 @@ public class Customer {
     @UpdateTimestamp
     private LocalDate modified;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
     @JsonIgnore
     private List<Account> accounts;
 }

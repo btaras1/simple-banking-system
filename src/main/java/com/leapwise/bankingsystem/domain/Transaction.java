@@ -17,18 +17,17 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity(name = "transaction")
 public class Transaction {
-
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "amount", nullable = false, unique = true)
+    @Column(name = "amount", nullable = false)
     private BigDecimal amount;
 
-    @Column(name = "message", nullable = false, unique = true)
+    @Column(name = "message", nullable = false)
     private String message;
 
-    @Column(name = "timestamp", nullable = false, unique = true)
+    @Column(name = "timestamp", nullable = false)
     private LocalDate timestamp;
 
     @CreationTimestamp
@@ -38,7 +37,6 @@ public class Transaction {
 
     private Currency currency;
 
-    //todo: PROVJERI CASCADE TYPE
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name="sender_account_id", nullable = false)
     private Account senderAccount;
